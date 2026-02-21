@@ -28,5 +28,10 @@
     "slug": "shock",
     "title": "Shock Types",
     "description": "Septic, cardiogenic, hypovolemic, obstructive"
+  },
+   {
+    "slug": "vent",
+    "title": "Ventilator managment",
+    "description": "ICU ventilator management guides"
   }
 ]
