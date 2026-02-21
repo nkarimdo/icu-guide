@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Internal Medicine ICU Guide</title>
+<style>
+body {
+  margin:0;
+  font-family: system-ui, Arial;
+  background:#0b0f14;
+  color:#e6edf3;
+}
+.container {
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+.sidebar {
+  width:260px;
+  background:#111826;
+  padding:15px;
+  border-radius:10px;
+  height:calc(100vh - 40px);
+  overflow:auto;
+}
+.layout {
+  display:flex;
+  gap:15px;
+}
+.topic {
+  padding:10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+.topic:hover {
+  background:#1a2333;
+}
+.topic.active {
+  background:#22304a;
+}
+.content {
+  flex:1;
+  background:#111826;
+  padding:20px;
+  border-radius:10px;
+}
+.tabs {
+  display:flex;
+  gap:8px;
+  margin-bottom:15px;
+}
+.tab {
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  background:#1a2333;
+}
+.tab.active {
+  background:#3a6df0;
+}
+h1 { margin-top:0 }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Internal Medicine ICU Guide</h1>
+  <div class="layout">
+    <div class="sidebar" id="topicList"></div>
+    <div class="content">
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('quick')">5-Minute</div>
+        <div class="tab" onclick="switchTab('deep')">In-Depth</div>
+        <div class="tab" onclick="switchTab('sources')">Sources</div>
+      </div>
+      <div id="contentArea">Select a topic.</div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+let topics = [];
+let currentTopic = null;
+let currentTab = "quick";
+async function loadTopics() {
+  const res = await fetch("content/index.json");
+  topics = await res.json();
+  const list = document.getElementById("topicList");
+  list.innerHTML = "";
+  topics.forEach(t => {
+    const div = document.createElement("div");
+    div.className = "topic";
+    div.textContent = t.title;
+    div.onclick = () => selectTopic(t);
+    list.appendChild(div);
+  });
+}
+async function selectTopic(topic) {
+  currentTopic = topic;
+  document.querySelectorAll(".topic").forEach(el => el.classList.remove("active"));
+  event.target.classList.add("active");
+  loadContent();
+}
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  event.target.classList.add("active");
+  loadContent();
+}
+async function loadContent() {
+  if (!currentTopic) return;
+  const file = `content/${currentTopic.slug}/${currentTab}.md`;
+  try {
+    const res = await fetch(file);
+    const md = await res.text();
+    document.getElementById("contentArea").innerHTML = marked.parse(md);
+  } catch {
+    document.getElementById("contentArea").innerHTML = "No content.";
+  }
+}
+loadTopics();
+</script>
+</body>
+</html>
