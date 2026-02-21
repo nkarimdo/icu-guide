@@ -33,5 +33,10 @@
     "slug": "vent",
     "title": "Ventilator managment",
     "description": "ICU ventilator management guides"
+  },
+   {
+    "slug": "gi-bleed",
+    "title": "GI Bleed",
+    "description": "Resuscitation, transfusion, endoscopy"
   }
 ]
