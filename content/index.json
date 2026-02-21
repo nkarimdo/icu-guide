@@ -1,3 +1,32 @@
 [
-  { "slug": "sepsis", "title": "Sepsis" }
+  {
+    "slug": "sepsis",
+    "title": "Sepsis & Septic Shock",
+    "description": "Bundles, fluids, pressors, source control"
+  },
+  {
+    "slug": "ards",
+    "title": "ARDS",
+    "description": "Vent settings, PF ratio, proning"
+  },
+  {
+    "slug": "dka",
+    "title": "Diabetic Ketoacidosis",
+    "description": "Insulin, potassium, fluids"
+  },
+  {
+    "slug": "hyponatremia",
+    "title": "Hyponatremia",
+    "description": "Workup, correction rates, SIADH"
+  },
+  {
+    "slug": "aki",
+    "title": "Acute Kidney Injury",
+    "description": "Pre-renal vs intrinsic vs post-renal"
+  },
+  {
+    "slug": "shock",
+    "title": "Shock Types",
+    "description": "Septic, cardiogenic, hypovolemic, obstructive"
+  }
 ]
