@@ -1,4 +1,3 @@
-# deep.md
 # Hyponatremia: Comprehensive Clinical Guide
 
 ## Pathophysiology & SIADH Criteria
