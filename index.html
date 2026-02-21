@@ -7,298 +7,257 @@
 
 <style>
   :root{
-    --bg: #0b1220;
-    --panel: rgba(255,255,255,0.06);
-    --panel2: rgba(255,255,255,0.085);
-    --border: rgba(255,255,255,0.10);
-    --text: rgba(255,255,255,0.92);
-    --muted: rgba(255,255,255,0.66);
-    --accent: #66b3ff;
-    --accent2: rgba(102,179,255,0.18);
-    --danger: #ff6b6b;
-    --ok: #3ddc97;
-    --shadow: 0 18px 60px rgba(0,0,0,0.45);
-    --radius: 16px;
+    --bg0:#070a12;
+    --bg1:#0b1220;
+    --panel:rgba(255,255,255,.06);
+    --panel2:rgba(255,255,255,.085);
+    --border:rgba(255,255,255,.10);
+    --text:rgba(255,255,255,.92);
+    --muted:rgba(255,255,255,.62);
+    --faint:rgba(255,255,255,.45);
+    --accent:#7cc0ff;
+    --accent2:rgba(124,192,255,.16);
+    --ok:#3ddc97;
+    --bad:#ff6b6b;
+    --shadow:0 18px 60px rgba(0,0,0,.45);
+    --radius:16px;
+    --radius2:14px;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
-  *{ box-sizing: border-box; }
-  html,body{ height:100%; }
+  *{box-sizing:border-box}
+  html,body{height:100%}
   body{
     margin:0;
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    color:var(--text);
     background:
-      radial-gradient(1200px 600px at 10% 0%, rgba(102,179,255,0.12), transparent 55%),
-      radial-gradient(900px 500px at 90% 10%, rgba(61,220,151,0.08), transparent 55%),
-      var(--bg);
-    color: var(--text);
+      radial-gradient(1200px 700px at 12% 2%, rgba(124,192,255,.12), transparent 55%),
+      radial-gradient(900px 600px at 90% 12%, rgba(61,220,151,.08), transparent 60%),
+      linear-gradient(180deg, var(--bg0), var(--bg1));
   }
 
-  a{ color: inherit; text-decoration: none; }
-  a:hover{ text-decoration: underline; }
-
-  .wrap{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 18px;
-  }
-
-  .topbar{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 14px 16px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 12px;
-    z-index: 10;
-    backdrop-filter: blur(10px);
-  }
-
-  .brand{
-    display:flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 240px;
-  }
-  .brand h1{
-    font-size: 16px;
-    margin: 0;
-    letter-spacing: 0.2px;
-  }
-  .brand .sub{
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .pill{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: rgba(0,0,0,0.16);
-    color: var(--muted);
-    font-size: 12px;
-    white-space: nowrap;
-  }
-  .dot{
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--ok);
-  }
-
-  .layout{
-    display:grid;
-    grid-template-columns: 320px 1fr;
-    gap: 14px;
-    margin-top: 14px;
-    align-items: start;
-  }
-
+  a{color:inherit}
+  code, pre{font-family:var(--mono)}
+  .wrap{max-width:1280px;margin:0 auto;padding:16px}
   .card{
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(10px);
   }
 
-  .sidebar{
-    padding: 12px;
-    position: sticky;
-    top: 92px;
-    max-height: calc(100vh - 110px);
-    overflow: auto;
+  /* Top bar */
+  .topbar{
+    position:sticky; top:12px; z-index:20;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:12px 14px;
+  }
+  .brand{display:flex;flex-direction:column;gap:2px}
+  .brandTitle{margin:0;font-size:15px;letter-spacing:.2px}
+  .brandSub{font-size:12px;color:var(--muted)}
+  .actions{display:flex;gap:8px;align-items:center}
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 10px;border-radius:999px;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.18);
+    color:var(--muted);
+    font-size:12px; white-space:nowrap;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:8px 10px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.18);
+    color:var(--muted);
+    cursor:pointer;
+    user-select:none;
+  }
+  .btn:hover{background:rgba(255,255,255,.07);color:var(--text)}
+  .btn:active{transform:translateY(1px)}
+  .kbd{
+    font-family:var(--mono);
+    font-size:11px;
+    padding:2px 6px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.06);
+    color:var(--muted);
   }
 
-  .searchRow{
-    display:flex;
-    gap: 8px;
-    align-items:center;
-    margin-bottom: 10px;
+  /* Layout */
+  .layout{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns: 320px 1fr 280px;
+    gap:12px;
+    align-items:start;
   }
+
+  /* Sidebar */
+  .sidebar{padding:12px; position:sticky; top:86px; max-height:calc(100vh - 98px); overflow:auto}
+  .searchRow{display:flex;gap:8px;align-items:center;margin-bottom:10px}
   .search{
     width:100%;
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: rgba(0,0,0,0.18);
-    color: var(--text);
-    outline: none;
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.18);
+    color:var(--text);
+    outline:none;
   }
-  .search::placeholder{ color: rgba(255,255,255,0.45); }
-
-  .smallBtn{
-    padding: 10px 10px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: rgba(0,0,0,0.18);
-    color: var(--muted);
-    cursor: pointer;
-  }
-  .smallBtn:hover{ background: rgba(255,255,255,0.07); color: var(--text); }
-
-  .topicList{
-    display:flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
+  .search::placeholder{color:rgba(255,255,255,.42)}
+  .topicList{display:flex;flex-direction:column;gap:8px}
   .topicBtn{
     width:100%;
     text-align:left;
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 1px solid transparent;
-    background: rgba(0,0,0,0.10);
-    color: var(--muted);
-    cursor: pointer;
-    transition: 120ms ease;
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px solid transparent;
+    background:rgba(0,0,0,.10);
+    color:var(--muted);
+    cursor:pointer;
+    transition:120ms ease;
   }
-  .topicBtn:hover{
-    background: rgba(255,255,255,0.07);
-    color: var(--text);
-  }
+  .topicBtn:hover{background:rgba(255,255,255,.07);color:var(--text)}
   .topicBtn.active{
-    border-color: rgba(102,179,255,0.35);
-    background: var(--accent2);
-    color: var(--text);
+    background:var(--accent2);
+    border-color:rgba(124,192,255,.35);
+    color:var(--text);
   }
+  .topicTitle{font-weight:750;font-size:13px;margin:0}
+  .topicDesc{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.35}
 
-  .topicTitle{
-    font-weight: 700;
-    font-size: 13px;
-    margin: 0;
+  /* Main */
+  .main{padding:12px}
+  .header{
+    padding:14px 14px 10px 14px;
+    display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
   }
-  .topicDesc{
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 4px;
-    line-height: 1.35;
-  }
-
-  .main{
-    padding: 14px;
-  }
-
-  .topicHeader{
-    display:flex;
-    justify-content: space-between;
-    gap: 10px;
-    align-items: flex-start;
-    padding: 14px 14px 0 14px;
-  }
-  .topicHeader .titleBlock{
-    display:flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .topicHeader h2{
-    margin: 0;
-    font-size: 18px;
-    letter-spacing: 0.2px;
-  }
-  .topicHeader .desc{
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.4;
-  }
-
+  .hTitle{margin:0;font-size:18px;letter-spacing:.2px}
+  .hDesc{margin-top:4px;font-size:12px;color:var(--muted);line-height:1.4}
   .tabs{
-    display:flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 12px 14px 0 14px;
-    border-top: 1px solid transparent;
+    display:flex; flex-wrap:wrap; gap:8px;
+    padding:0 14px 12px 14px;
   }
-
-  .tabBtn{
-    padding: 8px 10px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: rgba(0,0,0,0.16);
-    color: var(--muted);
-    cursor: pointer;
+  .tab{
+    padding:8px 10px;border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.16);
+    color:var(--muted);
+    cursor:pointer;
   }
-  .tabBtn:hover{ color: var(--text); background: rgba(255,255,255,0.07); }
-  .tabBtn.active{
-    background: var(--accent2);
-    border-color: rgba(102,179,255,0.35);
-    color: var(--text);
+  .tab:hover{background:rgba(255,255,255,.07);color:var(--text)}
+  .tab.active{
+    background:var(--accent2);
+    border-color:rgba(124,192,255,.35);
+    color:var(--text);
   }
-
-  .content{
-    padding: 14px;
-  }
-
+  .content{padding:14px;border-top:1px solid rgba(255,255,255,.08)}
   .status{
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: rgba(0,0,0,0.12);
-    color: var(--muted);
-    font-size: 13px;
+    padding:12px 12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.12);
+    color:var(--muted);
+    font-size:13px;
   }
-  .status.error{
-    border-color: rgba(255,107,107,0.35);
-    color: rgba(255,255,255,0.85);
-  }
-  .status.error .emph{ color: var(--danger); font-weight: 700; }
+  .status.error{border-color:rgba(255,107,107,.35);color:rgba(255,255,255,.84)}
+  .status.error .emph{color:var(--bad);font-weight:800}
 
-  /* Markdown styling */
-  .md{
-    line-height: 1.6;
-    font-size: 14px;
+  /* TOC */
+  .toc{padding:12px; position:sticky; top:86px; max-height:calc(100vh - 98px); overflow:auto}
+  .tocTitle{font-weight:750;font-size:13px;margin:0 0 8px 0;color:rgba(255,255,255,.86)}
+  .tocHint{font-size:12px;color:var(--muted);margin:0 0 10px 0;line-height:1.35}
+  .tocList{display:flex;flex-direction:column;gap:6px}
+  .tocLink{
+    display:block;
+    padding:8px 10px;
+    border-radius:12px;
+    border:1px solid transparent;
+    background:rgba(0,0,0,.10);
+    color:var(--muted);
+    cursor:pointer;
+    font-size:12px;
+    line-height:1.35;
+    text-decoration:none;
   }
-  .md h1, .md h2, .md h3{
-    margin: 16px 0 8px;
-    line-height: 1.25;
-  }
-  .md h1{ font-size: 20px; }
-  .md h2{ font-size: 17px; }
-  .md h3{ font-size: 15px; }
-  .md p{ margin: 10px 0; }
-  .md ul, .md ol{ margin: 10px 0 10px 20px; }
-  .md li{ margin: 6px 0; }
+  .tocLink:hover{background:rgba(255,255,255,.07);color:var(--text)}
+  .tocLevel2{padding-left:18px}
+  .tocLevel3{padding-left:30px}
+
+  /* Markdown */
+  .md{line-height:1.65;font-size:14px}
+  .md h1,.md h2,.md h3{margin:18px 0 8px;line-height:1.25;scroll-margin-top:110px}
+  .md h1{font-size:22px}
+  .md h2{font-size:18px}
+  .md h3{font-size:15px}
+  .md p{margin:10px 0}
+  .md ul,.md ol{margin:10px 0 10px 22px}
+  .md li{margin:6px 0}
   .md code{
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.10);
-    padding: 2px 6px;
-    border-radius: 8px;
-    font-size: 0.95em;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.10);
+    padding:2px 6px;border-radius:8px;
   }
   .md pre{
-    background: rgba(0,0,0,0.25);
-    border: 1px solid rgba(255,255,255,0.10);
-    padding: 12px;
-    border-radius: 14px;
-    overflow: auto;
+    background:rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.10);
+    padding:12px;border-radius:14px;overflow:auto;
   }
   .md blockquote{
-    margin: 12px 0;
-    padding: 10px 12px;
-    border-left: 3px solid rgba(102,179,255,0.45);
-    background: rgba(102,179,255,0.10);
-    border-radius: 12px;
-    color: rgba(255,255,255,0.85);
+    margin:12px 0;
+    padding:10px 12px;
+    border-left:3px solid rgba(124,192,255,.45);
+    background:rgba(124,192,255,.10);
+    border-radius:12px;
+    color:rgba(255,255,255,.86);
   }
-  .md hr{
-    border: none;
-    border-top: 1px solid rgba(255,255,255,0.10);
-    margin: 16px 0;
+  .md hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
+  .md table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    margin:12px 0;
+    overflow:hidden;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
   }
+  .md th,.md td{
+    padding:10px 10px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    vertical-align:top;
+    color:rgba(255,255,255,.86);
+  }
+  .md th{
+    background:rgba(255,255,255,.06);
+    color:rgba(255,255,255,.92);
+    font-weight:750;
+  }
+  .md tr:last-child td{border-bottom:none}
 
-  /* Mobile */
-  @media (max-width: 980px){
-    .layout{ grid-template-columns: 1fr; }
-    .sidebar{ position: relative; top: 0; max-height: none; }
-    .topbar{ position: relative; top: 0; }
+  /* Mobile behavior */
+  .mobileOnly{display:none}
+  @media (max-width: 1100px){
+    .layout{grid-template-columns: 320px 1fr}
+    .toc{display:none}
+  }
+  @media (max-width: 860px){
+    .layout{grid-template-columns: 1fr}
+    .sidebar{
+      position:fixed;
+      top:68px; left:12px; right:12px;
+      max-height: calc(100vh - 92px);
+      z-index:30;
+      transform: translateY(-6px);
+      display:none;
+    }
+    .sidebar.open{display:block}
+    .mobileOnly{display:inline-flex}
   }
 </style>
 </head>
@@ -307,100 +266,141 @@
   <div class="wrap">
     <div class="topbar card">
       <div class="brand">
-        <h1>Internal Medicine ICU Guide</h1>
-        <div class="sub">Markdown-driven resident reference</div>
+        <h1 class="brandTitle">Internal Medicine ICU Guide</h1>
+        <div class="brandSub">Tabs: 5-Min Quick Learn • In-Depth • Sources</div>
       </div>
-
-      <div class="pill" id="metaPill" title="Data source">
-        <span class="dot" id="statusDot"></span>
-        <span id="metaText">Loading topics…</span>
+      <div class="actions">
+        <button class="btn mobileOnly" id="toggleSidebarBtn" type="button" title="Topics">
+          Topics
+        </button>
+        <div class="pill" title="Status">
+          <span class="dot" id="statusDot"></span>
+          <span id="statusText">Loading topics…</span>
+        </div>
+        <div class="pill" title="Shortcut">
+          <span class="kbd">Ctrl</span><span class="kbd">K</span>
+        </div>
       </div>
     </div>
 
     <div class="layout">
-      <div class="card sidebar">
+      <div class="card sidebar" id="sidebar">
         <div class="searchRow">
-          <input id="searchInput" class="search" placeholder="Search topics (e.g., DKA, ARDS)" />
-          <button class="smallBtn" id="clearBtn" title="Clear search">×</button>
+          <input class="search" id="searchInput" placeholder="Search topics (Ctrl/Cmd+K)" />
+          <button class="btn" id="clearBtn" type="button" title="Clear">×</button>
         </div>
         <div class="topicList" id="topicList"></div>
       </div>
 
-      <div class="card">
-        <div class="topicHeader">
-          <div class="titleBlock">
-            <h2 id="topicTitle">Select a topic</h2>
-            <div class="desc" id="topicDesc">Topics come from <code>content/index.json</code>.</div>
+      <div class="card main">
+        <div class="header">
+          <div>
+            <h2 class="hTitle" id="topicTitle">Select a topic</h2>
+            <div class="hDesc" id="topicDesc">Topics are loaded from <code>content/index.json</code>.</div>
           </div>
-          <div class="pill" id="tabPill" title="Current tab">
+          <div class="pill" title="Current tab">
             <span style="width:8px;height:8px;border-radius:50%;background:var(--accent)"></span>
-            <span id="tabText">quick</span>
+            <span id="tabLabel">quick</span>
           </div>
         </div>
 
         <div class="tabs">
-          <button class="tabBtn active" data-tab="quick">5-Min Quick Learn</button>
-          <button class="tabBtn" data-tab="deep">In-Depth</button>
-          <button class="tabBtn" data-tab="sources">Sources</button>
+          <button class="tab active" type="button" data-tab="quick">5-Min Quick Learn</button>
+          <button class="tab" type="button" data-tab="deep">In-Depth</button>
+          <button class="tab" type="button" data-tab="sources">Sources</button>
         </div>
 
         <div class="content">
-          <div id="contentArea" class="status">Choose a topic from the left.</div>
+          <div class="status" id="contentArea">Choose a topic from the Topics list.</div>
         </div>
+      </div>
+
+      <div class="card toc" id="tocCard">
+        <div class="tocTitle">On this page</div>
+        <div class="tocHint" id="tocHint">Open a topic to generate section links.</div>
+        <div class="tocList" id="tocList"></div>
       </div>
     </div>
   </div>
 
-  <!-- Markdown renderer -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
   <script>
-    // ------- Config -------
+    // ---- Config ----
     const TOPIC_INDEX_PATH = "content/index.json";
     const DEFAULT_TAB = "quick";
+    const VALID_TABS = ["quick","deep","sources"];
 
-    // ------- State -------
+    // ---- Elements ----
+    const statusDot = document.getElementById("statusDot");
+    const statusText = document.getElementById("statusText");
+
+    const sidebar = document.getElementById("sidebar");
+    const toggleSidebarBtn = document.getElementById("toggleSidebarBtn");
+
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearBtn");
+    const topicListEl = document.getElementById("topicList");
+
+    const topicTitleEl = document.getElementById("topicTitle");
+    const topicDescEl = document.getElementById("topicDesc");
+    const tabLabelEl = document.getElementById("tabLabel");
+
+    const contentArea = document.getElementById("contentArea");
+
+    const tocHint = document.getElementById("tocHint");
+    const tocList = document.getElementById("tocList");
+
+    // ---- State ----
     let allTopics = [];
     let filteredTopics = [];
     let currentTopic = null;
     let currentTab = DEFAULT_TAB;
 
-    // ------- Elements -------
-    const topicListEl = document.getElementById("topicList");
-    const searchInputEl = document.getElementById("searchInput");
-    const clearBtnEl = document.getElementById("clearBtn");
-
-    const metaTextEl = document.getElementById("metaText");
-    const statusDotEl = document.getElementById("statusDot");
-
-    const topicTitleEl = document.getElementById("topicTitle");
-    const topicDescEl = document.getElementById("topicDesc");
-    const tabTextEl = document.getElementById("tabText");
-
-    const contentAreaEl = document.getElementById("contentArea");
-
-    // ------- Helpers -------
-    function setStatus(ok, text){
-      statusDotEl.style.background = ok ? "var(--ok)" : "var(--danger)";
-      metaTextEl.textContent = text;
+    // ---- Utilities ----
+    function setTopStatus(ok, text){
+      statusDot.style.background = ok ? "var(--ok)" : "var(--bad)";
+      statusText.textContent = text;
     }
 
     function normalize(s){
       return (s || "").toString().toLowerCase().trim();
     }
 
+    function setContentStatus(type, message){
+      contentArea.className = type ? `status ${type}` : "status";
+      contentArea.innerHTML = message;
+    }
+
+    async function fetchText(path){
+      const res = await fetch(path, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
+      return await res.text();
+    }
+
+    function slugifyHeading(text){
+      const base = (text || "")
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/[`~!@#$%^&*()+={}\[\]|\\:;"'<>,.?/]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+      return base || ("section-" + Math.random().toString(16).slice(2));
+    }
+
+    // ---- Rendering topics ----
     function renderTopics(){
       topicListEl.innerHTML = "";
 
       if (filteredTopics.length === 0){
-        const empty = document.createElement("div");
-        empty.className = "status";
-        empty.textContent = "No topics match your search.";
-        topicListEl.appendChild(empty);
+        const div = document.createElement("div");
+        div.className = "status";
+        div.textContent = "No topics match your search.";
+        topicListEl.appendChild(div);
         return;
       }
 
-      filteredTopics.forEach((t) => {
+      filteredTopics.forEach(t => {
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "topicBtn";
@@ -409,7 +409,6 @@
         const title = document.createElement("div");
         title.className = "topicTitle";
         title.textContent = t.title || t.slug;
-
         btn.appendChild(title);
 
         if (t.description){
@@ -419,7 +418,11 @@
           btn.appendChild(desc);
         }
 
-        btn.addEventListener("click", () => selectTopic(t.slug));
+        btn.addEventListener("click", () => {
+          selectTopic(t.slug);
+          closeSidebarIfMobile();
+        });
+
         topicListEl.appendChild(btn);
       });
 
@@ -427,50 +430,82 @@
     }
 
     function syncActiveTopicButton(){
-      const buttons = topicListEl.querySelectorAll(".topicBtn");
-      buttons.forEach(b => b.classList.remove("active"));
+      topicListEl.querySelectorAll(".topicBtn").forEach(b => b.classList.remove("active"));
       if (!currentTopic) return;
       const active = topicListEl.querySelector(`.topicBtn[data-slug="${CSS.escape(currentTopic.slug)}"]`);
       if (active) active.classList.add("active");
     }
 
-    function setTab(tab){
-      currentTab = tab;
-      tabTextEl.textContent = tab;
+    // ---- Sidebar mobile ----
+    function isMobileSidebarMode(){
+      return window.matchMedia("(max-width: 860px)").matches;
+    }
+    function closeSidebarIfMobile(){
+      if (isMobileSidebarMode()) sidebar.classList.remove("open");
+    }
+    function toggleSidebar(){
+      sidebar.classList.toggle("open");
+    }
 
-      document.querySelectorAll(".tabBtn").forEach(b => {
+    // ---- Tabs ----
+    function setTab(tab){
+      if (!VALID_TABS.includes(tab)) tab = DEFAULT_TAB;
+      currentTab = tab;
+      tabLabelEl.textContent = tab;
+
+      document.querySelectorAll(".tab").forEach(b => {
         b.classList.toggle("active", b.dataset.tab === tab);
       });
 
       loadContent();
     }
 
-    function setContentStatus(type, message){
-      contentAreaEl.className = type ? `status ${type}` : "status";
-      contentAreaEl.textContent = message;
+    // ---- TOC generation ----
+    function clearTOC(){
+      tocList.innerHTML = "";
+      tocHint.textContent = "Open a topic to generate section links.";
     }
 
-    async function fetchText(path){
-      const res = await fetch(path, { cache: "no-cache" });
-      if (!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
-      return await res.text();
+    function buildTOCFromRenderedMarkdown(){
+      tocList.innerHTML = "";
+      const headings = contentArea.querySelectorAll("h1, h2, h3");
+      if (!headings.length){
+        tocHint.textContent = "No headings detected in this section.";
+        return;
+      }
+      tocHint.textContent = "Jump to a section.";
+
+      headings.forEach(h => {
+        const level = h.tagName.toLowerCase(); // h1/h2/h3
+        if (!h.id) h.id = slugifyHeading(h.textContent);
+
+        const a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.className = "tocLink " + (level === "h2" ? "tocLevel2" : level === "h3" ? "tocLevel3" : "");
+        a.textContent = h.textContent || "(untitled)";
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.getElementById(h.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        tocList.appendChild(a);
+      });
     }
 
+    // ---- Markdown render ----
     function renderMarkdown(md){
-      contentAreaEl.className = "md";
-      contentAreaEl.innerHTML = marked.parse(md);
+      // marked is global via CDN
+      contentArea.className = "md";
+      contentArea.innerHTML = marked.parse(md);
+      buildTOCFromRenderedMarkdown();
     }
 
-    // ------- Core -------
+    // ---- Core loading ----
     async function loadTopics(){
       try{
-        setStatus(true, "Loading topics…");
+        setTopStatus(true, "Loading topics…");
         const raw = await fetchText(TOPIC_INDEX_PATH);
         const data = JSON.parse(raw);
 
-        // Allow either:
-        // 1) [{slug,title,description}, ...]
-        // 2) {topics:[...]}
         allTopics = Array.isArray(data) ? data : (data.topics || []);
         allTopics = allTopics
           .filter(t => t && t.slug)
@@ -478,44 +513,42 @@
             slug: String(t.slug),
             title: t.title ? String(t.title) : String(t.slug),
             description: t.description ? String(t.description) : ""
-          }));
-
-        // Default sort by title
-        allTopics.sort((a,b) => (a.title || "").localeCompare(b.title || ""));
+          }))
+          .sort((a,b) => (a.title || "").localeCompare(b.title || ""));
 
         filteredTopics = [...allTopics];
         renderTopics();
+        setTopStatus(true, `${allTopics.length} topics loaded`);
 
-        setStatus(true, `${allTopics.length} topics loaded`);
-        // Auto-select first topic
-        if (allTopics.length > 0){
+        if (allTopics.length){
           selectTopic(allTopics[0].slug);
         } else {
-          setContentStatus("", "No topics found. Add entries to content/index.json.");
+          setContentStatus("", "No topics found. Add entries to <code>content/index.json</code>.");
+          clearTOC();
         }
       } catch (e){
-        setStatus(false, "Failed to load topics");
+        setTopStatus(false, "Failed to load topics");
         setContentStatus("error",
-          "Topic index not found or invalid JSON. Verify: content/index.json is published and valid."
+          `<span class="emph">Topic index missing/invalid.</span> Verify <code>${TOPIC_INDEX_PATH}</code> exists and is valid JSON.`
         );
+        clearTOC();
       }
     }
 
     async function selectTopic(slug){
       const found = allTopics.find(t => t.slug === slug);
       if (!found){
-        setContentStatus("error", "Topic not found in index.json.");
+        setContentStatus("error", `<span class="emph">Topic not found.</span> Check <code>content/index.json</code>.`);
+        clearTOC();
         return;
       }
-
       currentTopic = found;
       topicTitleEl.textContent = found.title || found.slug;
       topicDescEl.textContent = found.description || "ICU resident reference";
       syncActiveTopicButton();
 
-      // Ensure tab stays valid
-      if (!["quick","deep","sources"].includes(currentTab)) currentTab = DEFAULT_TAB;
-      tabTextEl.textContent = currentTab;
+      if (!VALID_TABS.includes(currentTab)) currentTab = DEFAULT_TAB;
+      tabLabelEl.textContent = currentTab;
 
       setContentStatus("", "Loading content…");
       await loadContent();
@@ -523,7 +556,8 @@
 
     async function loadContent(){
       if (!currentTopic){
-        setContentStatus("", "Choose a topic from the left.");
+        setContentStatus("", "Choose a topic from the Topics list.");
+        clearTOC();
         return;
       }
 
@@ -534,48 +568,63 @@
         const md = await fetchText(path);
         if (!md.trim()){
           setContentStatus("", "This section is empty.");
+          clearTOC();
           return;
         }
         renderMarkdown(md);
       } catch (e){
         setContentStatus("error",
-          `Missing content file. Expected: ${path}`
+          `<span class="emph">Missing content file.</span> Expected: <code>${path}</code>`
         );
+        clearTOC();
       }
     }
 
-    // ------- Events -------
-    document.querySelectorAll(".tabBtn").forEach(btn => {
+    // ---- Events ----
+    document.querySelectorAll(".tab").forEach(btn => {
       btn.addEventListener("click", () => setTab(btn.dataset.tab));
     });
 
-    searchInputEl.addEventListener("input", () => {
-      const q = normalize(searchInputEl.value);
-      if (!q){
-        filteredTopics = [...allTopics];
-      } else {
-        filteredTopics = allTopics.filter(t => {
-          const hay = normalize(`${t.title} ${t.slug} ${t.description}`);
-          return hay.includes(q);
-        });
-      }
+    searchInput.addEventListener("input", () => {
+      const q = normalize(searchInput.value);
+      filteredTopics = !q
+        ? [...allTopics]
+        : allTopics.filter(t => normalize(`${t.title} ${t.slug} ${t.description}`).includes(q));
       renderTopics();
     });
 
-    clearBtnEl.addEventListener("click", () => {
-      searchInputEl.value = "";
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
       filteredTopics = [...allTopics];
       renderTopics();
-      searchInputEl.focus();
+      searchInput.focus();
     });
 
-    // Keyboard: Ctrl/Cmd+K focuses search
+    if (toggleSidebarBtn){
+      toggleSidebarBtn.addEventListener("click", toggleSidebar);
+    }
+
+    // Shortcuts
     window.addEventListener("keydown", (e) => {
-      const isK = (e.key || "").toLowerCase() === "k";
-      if (isK && (e.ctrlKey || e.metaKey)){
+      const key = (e.key || "").toLowerCase();
+
+      // Ctrl/Cmd+K focuses search
+      if (key === "k" && (e.ctrlKey || e.metaKey)){
         e.preventDefault();
-        searchInputEl.focus();
+        if (isMobileSidebarMode()) sidebar.classList.add("open");
+        searchInput.focus();
+        return;
       }
+
+      // Esc closes sidebar on mobile
+      if (key === "escape"){
+        closeSidebarIfMobile();
+      }
+    });
+
+    // Close sidebar if resizing to desktop
+    window.addEventListener("resize", () => {
+      if (!isMobileSidebarMode()) sidebar.classList.remove("open");
     });
 
     // Init
