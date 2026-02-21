@@ -1,4 +1,3 @@
-# sources.md
 # Hyponatremia: Key Literature & Sources
 
 The management algorithms and limits outlined in the quick and deep guides are heavily drawn from the following landmark consensus guidelines and reviews.
