@@ -1,4 +1,3 @@
-# quick.md
 # Hyponatremia: Quick ICU Reference
 
 ## 1. Acute/Severe Symptomatic Management (Emergencies)
